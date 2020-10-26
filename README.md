@@ -1,4 +1,4 @@
-# crud-clubes
+# chat-app
 
 Una aplicacion de chat hecha con express y socket.io
 
