@@ -4,6 +4,7 @@
   "description": "A chat app made with Socket.io.",
   "main": "index.js",
   "scripts": {
+    "start": "node src/app.js",
     "dev": "nodemon -e js,html src/app.js",
     "test": "jest --coverage"
   },
