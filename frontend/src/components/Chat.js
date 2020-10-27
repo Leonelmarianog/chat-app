@@ -1,8 +1,8 @@
-import React from 'react';
-import '../index.css';
-import io from 'socket.io-client';
-const socket = io.connect('http://localhost:3000');
-socket.on('connect', () => console.log('CONNECTED'));
+import React from "react";
+import "../index.css";
+/* import io from 'socket.io-client'; */
+/* const socket = io.connect('http://localhost:3000');
+socket.on('connect', () => console.log('CONNECTED')); */
 
 const Chat = () => {
   return (
