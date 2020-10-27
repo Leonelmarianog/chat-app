@@ -9,6 +9,7 @@ let $input = document.querySelector('#m');
 $formulario.onsubmit = (e) => {
   e.preventDefault();
   socket.emit('chat message', $input.value);
+  $input.value = '';
   return false;
 };
 
