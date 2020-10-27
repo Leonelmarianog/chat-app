@@ -1,26 +1,42 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../index.css";
-/* import io from 'socket.io-client'; */
-/* const socket = io.connect('http://localhost:3000');
-socket.on('connect', () => console.log('CONNECTED')); */
+import socketIOClient from "socket.io-client";
+
+const ENDPOINT = "http://localhost:5000";
+const socket = socketIOClient(ENDPOINT);
 
 const Chat = () => {
+  const [state, setState] = useState([]);
+  const [input, setInput] = useState("");
+
+  useEffect(() => {
+    socket.on("chat message", (data) => {
+      const newState = [...state, data];
+      setState(newState);
+    });
+  }, [state]);
+
   return (
     <div>
       <ul id="messages">
-        <li>asdasdasd</li>
-        <li>asdasdasd</li>
-        <li>asdasdasd</li>
-        <li>asdasdasd</li>
+        {state &&
+          state.map((message, index) => (
+            <li key={`message-${index + 1}`}>{message}</li>
+          ))}
       </ul>
       <form
         className="formulario"
-        action=""
-        //onSubmit={(e, value) => {
-        //e.preventDefault();
-        //socket.emit('chat message', e.target.value);
+        onSubmit={(event) => {
+          event.preventDefault();
+          socket.emit("chat message", { message: input });
+        }}
       >
-        <input id="m" autoComplete="off" />
+        <input
+          id="m"
+          autoComplete="off"
+          value={input}
+          onChange={(event) => setInput(event.target.value)}
+        />
         <button className="boton">Send</button>
       </form>
     </div>

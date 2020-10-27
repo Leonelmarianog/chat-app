@@ -3,7 +3,7 @@ const socketIO = require('socket.io');
 
 const app = express();
 
-/* app.use(express.static('frontend/build')); */
+app.use(express.static('frontend/build'));
 app.use(express.static('backend/public'));
 
 const PORT = process.env.PORT || 5000;
@@ -26,8 +26,9 @@ io.on('connection', (socket) => {
   console.log(`${socket.id} realizo una conexion!`);
   actualizarListaParticipantes();
 
-  socket.on('chat message', (msg) => {
-    io.emit('chat message', msg);
+  socket.on('chat message', (data) => {
+    console.log('se recibio en el servidor', data);
+    io.emit('chat message', data.message);
   });
 
   socket.on('disconnect', () => {
