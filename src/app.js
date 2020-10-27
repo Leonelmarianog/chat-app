@@ -14,11 +14,24 @@ const server = app.listen(PORT, () => {
 
 const io = socketIO(server);
 
+function actualizarListaParticipantes() {
+  io.of('/').clients((error, clients) => {
+    if (error) throw error;
+    console.log('clientes: ', clients);
+    io.emit('participantes', clients);
+  })
+}
+
 io.on('connection', (socket) => {
   console.log(`${socket.id} realizo una conexion!`);
-  socket.on('disconnect', () => console.log('Client disconnected'));
+  actualizarListaParticipantes()
+
   socket.on('chat message', (msg) => {
-    console.log(`mensaje: ${msg}`);
     io.emit('chat message', msg);
+  });
+
+  socket.on('disconnect', () => {
+    actualizarListaParticipantes()
+    console.log('Client disconnected')
   });
 });
