@@ -6,7 +6,10 @@
   "scripts": {
     "start": "node src/app.js",
     "dev": "nodemon -e js,html src/app.js",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "start-client": "cd react-chat && npm start",
+    "build-client": "cd react-chat && npm run build",
+    "heroku-postbuild": "cd react-chat && npm install --only=dev && npm install && npm run build"
   },
   "author": "",
   "license": "ISC",
