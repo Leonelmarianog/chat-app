@@ -1,28 +1,26 @@
 {
   "name": "chat-app",
   "version": "1.0.0",
-  "description": "A chat app made with Socket.io.",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node src/app.js",
-    "dev": "nodemon -e js,html src/app.js",
-    "test": "jest --coverage",
-    "start-client": "cd react-chat && npm start",
-    "build-client": "cd react-chat && npm run build",
-    "heroku-postbuild": "cd react-chat && npm install --only=dev && npm install && npm run build"
+    "start": "node backend/src/app.js",
+    "dev": "nodemon -e js,html backend/src/app.js",
+    "start-client": "cd frontend && npm start",
+    "build-client": "cd frontend && npm run build",
+    "heroku-postbuild": "cd frontend && npm install && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Leonelmarianog/chat-app.git"
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "express": "^4.17.1",
-    "socket.io": "^2.3.0"
+  "bugs": {
+    "url": "https://github.com/Leonelmarianog/chat-app/issues"
   },
+  "homepage": "https://github.com/Leonelmarianog/chat-app#readme",
   "devDependencies": {
-    "eslint": "^7.12.0",
-    "eslint-config-airbnb-base": "^14.2.0",
-    "eslint-config-prettier": "^6.14.0",
-    "eslint-plugin-import": "^2.22.1",
-    "nodemon": "^2.0.6",
-    "prettier": "2.1.2"
+    "nodemon": "^2.0.6"
   }
 }
