@@ -3,9 +3,10 @@ const socketIO = require('socket.io');
 
 const app = express();
 
+/* app.use(express.static('react-chat/build')); */
 app.use(express.static('public'));
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 
 const server = app.listen(PORT, () => {
   console.log(`Escuchando en puerto ${PORT}...`);
@@ -17,7 +18,7 @@ io.on('connection', (socket) => {
   console.log(`${socket.id} realizo una conexion!`);
   socket.on('disconnect', () => console.log('Client disconnected'));
   socket.on('chat message', (msg) => {
-    console.log('mensaje: ', msg);
+    console.log(`mensaje: ${msg}`);
     io.emit('chat message', msg);
   });
 });
