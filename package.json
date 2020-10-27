@@ -8,6 +8,7 @@
     "dev": "nodemon -e js,html backend/src/app.js",
     "start-client": "cd frontend && npm start",
     "build-client": "cd frontend && npm run build",
+    "postinstall": "npm install --prefix ./backend",
     "heroku-postbuild": "cd frontend && npm install && npm run build"
   },
   "repository": {
