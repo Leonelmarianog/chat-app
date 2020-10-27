@@ -5,6 +5,7 @@ socket.on('connect', () => console.log('CONNECTED'));
 
 let $formulario = document.querySelector('.formulario');
 let $input = document.querySelector('#m');
+const $participantes = document.querySelector('#participantes');
 
 $formulario.onsubmit = (e) => {
   e.preventDefault();
@@ -18,4 +19,13 @@ socket.on('chat message', (mensaje) => {
   let lista = document.createElement('li');
   lista.innerText = mensaje;
   mensajes.appendChild(lista);
+});
+
+socket.on('participantes', (list) => {
+  $participantes.innerHTML = '';
+  list.forEach(element => {
+    const nuevoParticipante = document.createElement('li');
+    nuevoParticipante.innerText = element
+    $participantes.appendChild(nuevoParticipante);
+  });
 });
