@@ -2,7 +2,16 @@ import React, { useState, useEffect } from "react";
 import "../index.css";
 import socketIOClient from "socket.io-client";
 
-const ENDPOINT = "http://localhost:5000";
+let ENDPOINT;
+
+if (process.env.NODE_ENV === "development") {
+  console.log("development");
+  ENDPOINT = "http://localhost:5000";
+} else if (process.env.NODE_ENV === "production") {
+  console.log("production");
+  ENDPOINT = "chat-aplicacion-practica.herokuapp.com";
+}
+
 const socket = socketIOClient(ENDPOINT);
 
 const Chat = () => {
